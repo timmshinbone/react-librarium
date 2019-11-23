@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import book list
+import CopyList from '../CopyList'
 import CreateBook from '../CreateBookForm'
 //import edit book modal
 
@@ -60,11 +60,13 @@ class CopyContainer extends Component {
 			console.log(err);
 		}
 	}
+
 	render(){
-		console.log("\nThis is this.state in copies container");
-		console.log(this.state);
+		console.log("\nThis is this.state.copies Copycontainer");
+		console.log(this.state.copies);
 		return(
 			<div>
+				<CopyList copies={this.state.copies} />
 				<CreateBook addBook={this.addBook}/>
 			</div>
 		)
@@ -75,7 +77,7 @@ class CopyContainer extends Component {
 export default CopyContainer
 
 
-
+//.where(this.state.copies['owner'].username === this.props.loggedInUsername)
 
 
 
