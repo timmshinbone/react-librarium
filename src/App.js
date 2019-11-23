@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import LoginRegisterForm from './LoginRegisterForm'
+import CopyContainer from './CopyContainer'
 
 class App extends React.Component {
 	constructor(){
@@ -28,6 +29,8 @@ class App extends React.Component {
 				loggedin: true,
 				loggedInUsername: parsedLoginResponse.data.username
 			})
+			console.log("\nThis is this.state.loggedin");
+			console.log(this.state.loggedin);
 		} else {
 			console.log("Login Failed");
 			console.log(parsedLoginResponse);
@@ -58,7 +61,7 @@ class App extends React.Component {
 	render(){
 		return(
 			<div className="App">
-				<LoginRegisterForm login={this.login} register={this.register} />
+				{ this.state.loggedin ? <CopyContainer /> : <LoginRegisterForm login={this.login} register={this.register} />}
 			</div>
 		)
 	}
