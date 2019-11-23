@@ -26,13 +26,13 @@ class CopyContainer extends Component {
 	componentDidMount(){
 		this.getCopies();
 	}
+	
 	getCopies = async () => {
 		try {
 			const copies = await fetch(process.env.REACT_APP_API_URL + '/api/v1/copies/', {
 				credentials: 'include'
 			});
 			const parsedCopies = await copies.json();
-			console.log(parsedCopies);
 			this.setState({
 				copies: parsedCopies.data
 			})
@@ -53,6 +53,8 @@ class CopyContainer extends Component {
 				}
 			});
 			const parsedResponse = await createdBookResponse.json();
+			console.log("This is parsedResponse");
+			console.log(parsedResponse);
 			this.setState({copies: [...this.state.copies, parsedResponse.data]})
 		}
 		catch (err) {

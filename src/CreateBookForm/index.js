@@ -21,7 +21,7 @@ class CreateBook extends Component {
 	render(){
 		return(
 			<Segment>
-				<Label>Add a Book to your Librarium!</Label>
+				<h3>Add a Book to your Librarium!</h3>
 				<Form onSubmit={(e) => this.props.addBook(e, this.state)}>
 					<Label>Title:</Label>
 					<Form.Input type='text' name='title' value={this.state.title} onChange={this.handleChange}/>

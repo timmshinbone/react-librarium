@@ -6,7 +6,7 @@ function CopyList(props){
 		const copies = props.copies.map((copy) => {
 			return(
 				<Card key={copy.id}>
-					<Image src='' wrapped ui={false}/>
+					<Image src={copy.book.image} wrapped ui={false}/>
 					<Card.Content>
 						<Card.Header>{copy.book.title}</Card.Header>
 						<Card.Description>{copy.book.author}</Card.Description>
@@ -17,7 +17,7 @@ function CopyList(props){
 					</Card.Content>
 					<Card.Content extra>
 						<Button color="olive">Edit Copy</Button>
-						<Button color="orange">Delete Copy</Button>
+						<Button color="orange">Lost My Copy!</Button>
 					</Card.Content>
 				</Card>
 			)
