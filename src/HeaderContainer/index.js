@@ -1,17 +1,29 @@
 import React from 'react'
-import { Header, Icon } from 'semantic-ui-react'
+import { Segment, Header, Icon, Button } from 'semantic-ui-react'
 
 const HeaderContainer = (props) => {
 	return(
-		<Header as='h2'>
-			<Icon name={props.loggedin ? 'user outline' : 'book'} />
+			<Header as='h2'>
 			{props.loggedin ?
-				<Header.Content>{props.loggedInUsername}</Header.Content>
+				<Segment.Group>
+					<Segment>
+						<Icon name='user outline'/>
+						<Header.Content>{props.loggedInUsername}</Header.Content>
+					</Segment>
+					<Segment>
+						<Button color='orange' onClick={props.logout}>Log Out</Button>
+					</Segment>
+				</Segment.Group>
 				:
-				<Header.Content>Librarium</Header.Content>
+				<Segment>
+					<Icon name='book' />
+					<Header.Content>Librarium</Header.Content>
+				</Segment>
 			}
 		</Header>
 	)
 }
 
 export default HeaderContainer
+
+//<Icon name={props.loggedin ? 'user outline' : 'book'} />

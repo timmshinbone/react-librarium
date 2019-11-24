@@ -59,10 +59,23 @@ class App extends React.Component {
 			console.log(parsedLoginResponse);
 		}
 	}
+	logout = async () => {
+		const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/logout', {
+			method: 'GET',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		this.setState({
+			loggedin: false,
+			loggedInUsername: null
+		})
+	}
 	render(){
 		return(
 			<div className="App">
-				<HeaderContainer loggedin={this.state.loggedin} loggedInUsername={this.state.loggedInUsername}/>
+				<HeaderContainer loggedin={this.state.loggedin} loggedInUsername={this.state.loggedInUsername} logout={this.logout}/>
 				{ this.state.loggedin ? <CopyContainer /> : <LoginRegisterForm login={this.login} register={this.register} />}
 			</div>
 		)
