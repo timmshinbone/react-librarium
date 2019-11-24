@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Segment, Grid } from 'semantic-ui-react'
 import CopyContainer from '../CopyContainer'
 import UserList from '../UserList'
 
@@ -55,18 +56,27 @@ class UserContainer extends Component {
 		console.log("this is this.state in user container");
 		console.log(this.state);
 		return(
-			<div>
-				<CopyContainer 					
-					loggedin={this.props.loggedin}
-					loggedInUsername={this.props.loggedInUsername}
-					logout={this.props.logout} 
-				/>
-				<UserList
-					loggedin={this.props.loggedin}
-					loggedInUsername={this.props.loggedInUsername}
-					users={this.state.users}
-				/>
-			</div>
+			<Segment>
+				<Grid>
+					<Grid.Column width={1}/>
+					<Grid.Column width={9}>
+						<CopyContainer 					
+							loggedin={this.props.loggedin}
+							loggedInUsername={this.props.loggedInUsername}
+							logout={this.props.logout} 
+						/>
+					</Grid.Column>
+					<Grid.Column width={1}/>
+					<Grid.Column width={3}>
+						<UserList
+							loggedin={this.props.loggedin}
+							loggedInUsername={this.props.loggedInUsername}
+							users={this.state.users}
+						/>
+					</Grid.Column>
+					<Grid.Column width={1}/>
+				</Grid>
+			</Segment>
 		)
 	}
 }
