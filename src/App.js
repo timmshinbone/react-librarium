@@ -75,8 +75,22 @@ class App extends React.Component {
 	render(){
 		return(
 			<div className="App">
-				<HeaderContainer loggedin={this.state.loggedin} loggedInUsername={this.state.loggedInUsername} logout={this.logout}/>
-				{ this.state.loggedin ? <CopyContainer /> : <LoginRegisterForm login={this.login} register={this.register} />}
+				<HeaderContainer 
+					loggedin={this.state.loggedin} 
+					loggedInUsername={this.state.loggedInUsername} 
+					logout={this.logout}
+				/>
+				{ this.state.loggedin ? 
+				<CopyContainer
+					loggedin={this.state.loggedin}
+					loggedInUsername={this.state.loggedInUsername}
+					logout={this.logout} 
+				/> 
+				: 
+				<LoginRegisterForm 
+					login={this.login} 
+					register={this.register} 
+				/>}
 			</div>
 		)
 	}

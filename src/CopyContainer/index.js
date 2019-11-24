@@ -79,13 +79,30 @@ class CopyContainer extends Component {
 			addModalOpen: false
 		})
 	}
+	deleteCopy = async (id) => {
+		console.log(id)
+		const deleteCopyResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/copies/' + id, 
+			{
+				credentials: 'include',
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+		const deleteCopyParsed = await deleteCopyResponse.json();
+		console.log(deleteCopyParsed);
+		this.setState({copies: this.state.copies.filter((copy => copy.id !==id))})
+	}
 	render(){
 		return(
 			<div>
 				<Segment>
 					<Button color="blue" onClick={this.openAddModal}>Add a New Book!</Button>
 				</Segment>
-				<CopyList copies={this.state.copies} />
+				<CopyList 
+					copies={this.state.copies}
+					deleteCopy={this.deleteCopy} 
+				/>
 				<CreateBookModal
 					open={this.state.addModalOpen}
 					addBook={this.addBook}

@@ -17,7 +17,7 @@ function CopyList(props){
 					</Card.Content>
 					<Card.Content extra>
 						<Button color="olive">Edit Copy</Button>
-						<Button color="orange">Lost My Copy!</Button>
+						<Button color="orange" onClick={() => props.deleteCopy(copy.id)}>Lost My Copy!</Button>
 					</Card.Content>
 				</Card>
 			)
