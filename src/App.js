@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 import LoginRegisterForm from './LoginRegisterForm'
-import CopyContainer from './CopyContainer'
+// import CopyContainer from './CopyContainer'
 import HeaderContainer from './HeaderContainer'
+import UserContainer from './UserContainer'
+
 
 class App extends React.Component {
 	constructor(){
@@ -24,7 +26,7 @@ class App extends React.Component {
 			}
 		})
 		const parsedLoginResponse = await response.json()
-		console.log(parsedLoginResponse);
+		// console.log(parsedLoginResponse);
 		if(parsedLoginResponse.status.code === 200) {
 			this.setState({
 				loggedin: true,
@@ -34,7 +36,7 @@ class App extends React.Component {
 			console.log(this.state.loggedInUsername);
 		} else {
 			console.log("Login Failed");
-			console.log(parsedLoginResponse);
+			// console.log(parsedLoginResponse);
 		}
 	}
 	register = async (loginInfo) => {
@@ -67,6 +69,7 @@ class App extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		})
+		console.log(response);
 		this.setState({
 			loggedin: false,
 			loggedInUsername: null
@@ -81,11 +84,11 @@ class App extends React.Component {
 					logout={this.logout}
 				/>
 				{ this.state.loggedin ? 
-				<CopyContainer
+				<UserContainer
 					loggedin={this.state.loggedin}
 					loggedInUsername={this.state.loggedInUsername}
 					logout={this.logout} 
-				/> 
+				/>
 				: 
 				<LoginRegisterForm 
 					login={this.login} 

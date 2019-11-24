@@ -11,7 +11,7 @@ const HeaderContainer = (props) => {
 						<Header.Content>{props.loggedInUsername}</Header.Content>
 					</Segment>
 					<Segment>
-						<Button color='orange' onClick={props.logout}>Log Out</Button>
+						<Button basic color='orange' onClick={props.logout}>Log Out</Button>
 					</Segment>
 				</Segment.Group>
 				:
