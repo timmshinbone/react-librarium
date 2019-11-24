@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Segment, Button } from 'semantic-ui-react'
 import CopyList from '../CopyList'
-import CreateBook from '../CreateBookForm'
+// import CreateBook from '../CreateBookForm'
+import CreateBookModal from '../CreateBookModal'
 //import edit book modal
 
 class CopyContainer extends Component {
@@ -41,13 +43,13 @@ class CopyContainer extends Component {
 			console.log(err);
 		}
 	}
-	addBook = async (e, bookFromTheForm) => {
+	addBook = async (e, bookFromModalForm) => {
 		e.preventDefault();
 		try{
 			const createdBookResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/books/', {
 				method: 'POST',
 				credentials: 'include',
-				body: JSON.stringify(bookFromTheForm),
+				body: JSON.stringify(bookFromModalForm),
 				headers: {
 					'Content-Type': 'application/json'
 				}
@@ -55,21 +57,40 @@ class CopyContainer extends Component {
 			const parsedResponse = await createdBookResponse.json();
 			console.log("This is parsedResponse");
 			console.log(parsedResponse);
-			this.setState({copies: [...this.state.copies, parsedResponse.data]})
+			console.log('This is book from modal form')
+			console.log(bookFromModalForm);
+			this.getCopies()
+			this.closeAddModal()
 		}
 		catch (err) {
 			console.log('error');
 			console.log(err);
+			this.closeAddModal()
+
 		}
 	}
-
+	openAddModal = () => {
+		this.setState({
+			addModalOpen: true
+		})
+	}
+	closeAddModal = () => {
+		this.setState({
+			addModalOpen: false
+		})
+	}
 	render(){
-		console.log("\nThis is this.state.copies Copycontainer");
-		console.log(this.state.copies);
 		return(
 			<div>
+				<Segment>
+					<Button color="blue" onClick={this.openAddModal}>Add a New Book!</Button>
+				</Segment>
 				<CopyList copies={this.state.copies} />
-				<CreateBook addBook={this.addBook}/>
+				<CreateBookModal
+					open={this.state.addModalOpen}
+					addBook={this.addBook}
+					closeModal={this.closeAddModal}
+				/>
 			</div>
 		)
 	}
