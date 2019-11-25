@@ -3,11 +3,11 @@ import { Segment, Header, Icon, Button } from 'semantic-ui-react'
 
 const HeaderContainer = (props) => {
 	return(
-			<Header as='h2'>
+			<Header as='h1'>
 			{props.loggedin ?
 				<Segment.Group>
 					<Segment>
-						<Icon name='user outline'/>
+						<Icon name='user outline' />
 						<Header.Content>{props.loggedInUsername}</Header.Content>
 					</Segment>
 					<Segment>

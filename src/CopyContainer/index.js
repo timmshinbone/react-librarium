@@ -101,7 +101,11 @@ class CopyContainer extends Component {
 				</Segment>
 				<CopyList 
 					copies={this.state.copies}
-					deleteCopy={this.deleteCopy} 
+					deleteCopy={this.deleteCopy}
+					loggedin={this.props.loggedin}
+					loggedInUsername={this.props.loggedInUsername}
+					logout={this.props.logout} 
+					users={this.props.users} 
 				/>
 				<CreateBookModal
 					open={this.state.addModalOpen}

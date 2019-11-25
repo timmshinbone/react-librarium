@@ -16,7 +16,6 @@ class App extends React.Component {
     	}
 	}
 	login = async (loginInfo) => {
-		console.log("\nThis is loginInfo", loginInfo);
 		const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/login', {
 			method: 'POST',
 			credentials: 'include',
@@ -34,13 +33,14 @@ class App extends React.Component {
 			})
 			console.log("\nThis is this.state.loggedInUsername");
 			console.log(this.state.loggedInUsername);
+			console.log("\nThis is this.state.loggedin");
+			console.log(this.state.loggedin);
 		} else {
 			console.log("Login Failed");
 			// console.log(parsedLoginResponse);
 		}
 	}
 	register = async (loginInfo) => {
-		console.log("\nThis is loginInfo");
 		const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/register', {
 			method: 'POST',
 			credentials: 'include',

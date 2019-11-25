@@ -54,7 +54,7 @@ class LoginRegisterForm extends React.Component{
 							this.state.action === 'register'
 							?
 							<React.Fragment>
-								<Label>Email:</Label>
+								<Label basic pointing="below" color="purple">Email:</Label>
 								<Form.Input
 									type="email"
 									name="email"
@@ -65,21 +65,21 @@ class LoginRegisterForm extends React.Component{
 							:
 							null
 						}
-						<Label>Username:</Label>
+						<Label basic pointing="below" color="blue">Username:</Label>
 						<Form.Input
 							type="text"
 							name="username"
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
-						<Label>Password:</Label>
+						<Label basic pointing="below" color="orange">Password:</Label>
 						<Form.Input
 							type="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<Button type="Submit">{this.state.action ==="register" ? "Register" : "Log In"}</Button>
+						<Button color="teal" type="Submit">{this.state.action ==="register" ? "Register" : "Log In"}</Button>
 					</Form>
 					{
 						this.state.action === "register"

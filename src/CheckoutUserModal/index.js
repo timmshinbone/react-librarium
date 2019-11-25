@@ -1,11 +1,11 @@
-import React from 'react';
-import { Card, Button, Image } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Button, Image, Card, Modal } from 'semantic-ui-react'
 
-function CopyList(props){
-	console.log("This is props.users in CopyList");
-	console.log(props.users);
-	if(props.copies.length > 0){
-		const userCopies = props.copies.filter((copy) => copy.owner.username === props.loggedInUsername)
+
+function CheckoutUserModal(props){
+	if(props.selectedUser.id > 0) {	
+		const userCopies = props.copies.filter((copy) => copy.owner.id === props.selectedUser.id)
+		console.log("This is userCopies", userCopies);
 		const copies = userCopies.map((copy) => {
 			return(
 				<Card key={copy.id}>
@@ -26,9 +26,10 @@ function CopyList(props){
 			)
 		})
 		return(
-			<Card.Group>
-				{ copies }
-			</Card.Group>
+			<Modal open={props.open} closeIcon onClose={props.close}>
+				<h1>This is the {props.selectedUser.username} Modal</h1>
+				{copies}
+			</Modal>
 		)
 	} else {
 		return(
@@ -36,4 +37,8 @@ function CopyList(props){
 		)
 	}
 }
-export default CopyList
+
+
+
+
+export default CheckoutUserModal

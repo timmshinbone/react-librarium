@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Grid } from 'semantic-ui-react'
 import CopyContainer from '../CopyContainer'
 import UserList from '../UserList'
+import CheckoutUserModal from '../CheckoutUserModal'
 
 class UserContainer extends Component {
 	constructor(props){
@@ -10,11 +11,17 @@ class UserContainer extends Component {
 		this.state = {
 			copies: [],
 			users: [],
+			selectedUser: {
+				id: '',
+				username: ''
+			},
+			checkoutUserModalOpen: false,
 		}
 	}
 	componentDidMount(){
 		this.getCopies();
 		this.getUsers();
+		console.log("This is selectedUser\n", this.state.selectedUser);
 	}
 	getCopies = async () => {
 		try {
@@ -43,6 +50,7 @@ class UserContainer extends Component {
 				}
 			});
 			const parsedUsers = await users.json();
+			console.log("This is parsedUsers in UserContainer")
 			console.log(parsedUsers);
 			this.setState({
 				users: parsedUsers.data
@@ -52,18 +60,37 @@ class UserContainer extends Component {
 			console.log(err);
 		}
 	}
+	showUser = (user) => {
+		const selectUser = this.state.users.filter((select) => select.id === user)
+		console.log("This is selectUser in ShowUser\n", selectUser);
+		const selectUserId = selectUser[0].id
+		const selectUserUsername = selectUser[0].username
+		console.log("This is selectUserId", selectUserId);
+		console.log("This is selectUserUsername", selectUserUsername);
+		this.setState({
+			checkoutUserModalOpen: true,
+			selectedUser: {
+				id: selectUserId,
+				username: selectUserUsername
+			}
+		})
+	}
+	closeUserModal = () => {
+		this.setState({
+			checkoutUserModalOpen: false
+		})
+	}
 	render(props){
-		console.log("this is this.state in user container");
-		console.log(this.state);
 		return(
 			<Segment>
-				<Grid>
+				<Grid columns={5} divided >
 					<Grid.Column width={1}/>
 					<Grid.Column width={9}>
 						<CopyContainer 					
 							loggedin={this.props.loggedin}
 							loggedInUsername={this.props.loggedInUsername}
-							logout={this.props.logout} 
+							logout={this.props.logout}
+							users={this.state.users}
 						/>
 					</Grid.Column>
 					<Grid.Column width={1}/>
@@ -72,10 +99,18 @@ class UserContainer extends Component {
 							loggedin={this.props.loggedin}
 							loggedInUsername={this.props.loggedInUsername}
 							users={this.state.users}
+							showUser={this.showUser}
+							copies={this.state.copies}
 						/>
 					</Grid.Column>
 					<Grid.Column width={1}/>
 				</Grid>
+				<CheckoutUserModal 
+					open={this.state.checkoutUserModalOpen}
+					selectedUser={this.state.selectedUser}
+					copies={this.state.copies}
+					close={this.closeUserModal}
+				/>
 			</Segment>
 		)
 	}
