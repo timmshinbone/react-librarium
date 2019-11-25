@@ -20,7 +20,7 @@ function CheckoutUserModal(props){
 					</Card.Content>
 					<Card.Content extra>
 						<Button color="olive">Trade</Button>
-						<Button color="orange">Borrow</Button>
+						<Button color="orange" onClick={() => console.log("borrow clicked")}>Borrow</Button>
 					</Card.Content>
 				</Card>
 			)

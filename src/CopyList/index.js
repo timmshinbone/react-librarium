@@ -2,8 +2,6 @@ import React from 'react';
 import { Card, Button, Image } from 'semantic-ui-react'
 
 function CopyList(props){
-	console.log("This is props.users in CopyList");
-	console.log(props.users);
 	if(props.copies.length > 0){
 		const userCopies = props.copies.filter((copy) => copy.owner.username === props.loggedInUsername)
 		const copies = userCopies.map((copy) => {

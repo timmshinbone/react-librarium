@@ -3,6 +3,7 @@ import { Segment, Grid } from 'semantic-ui-react'
 import CopyContainer from '../CopyContainer'
 import UserList from '../UserList'
 import CheckoutUserModal from '../CheckoutUserModal'
+import TradeContainer from '../TradeContainer'
 
 class UserContainer extends Component {
 	constructor(props){
@@ -21,7 +22,6 @@ class UserContainer extends Component {
 	componentDidMount(){
 		this.getCopies();
 		this.getUsers();
-		console.log("This is selectedUser\n", this.state.selectedUser);
 	}
 	getCopies = async () => {
 		try {
@@ -50,8 +50,6 @@ class UserContainer extends Component {
 				}
 			});
 			const parsedUsers = await users.json();
-			console.log("This is parsedUsers in UserContainer")
-			console.log(parsedUsers);
 			this.setState({
 				users: parsedUsers.data
 			})
@@ -62,11 +60,8 @@ class UserContainer extends Component {
 	}
 	showUser = (user) => {
 		const selectUser = this.state.users.filter((select) => select.id === user)
-		console.log("This is selectUser in ShowUser\n", selectUser);
 		const selectUserId = selectUser[0].id
 		const selectUserUsername = selectUser[0].username
-		console.log("This is selectUserId", selectUserId);
-		console.log("This is selectUserUsername", selectUserUsername);
 		this.setState({
 			checkoutUserModalOpen: true,
 			selectedUser: {
@@ -83,6 +78,7 @@ class UserContainer extends Component {
 	render(props){
 		return(
 			<Segment >
+				<TradeContainer />
 				<Grid columns={5} divided >
 					<Grid.Column width={1}/>
 					<Grid.Column width={9}>
