@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Button, Image, Card, Modal } from 'semantic-ui-react'
+import React from 'react'
+import { Button, Image, Card, Modal, Segment, Grid, Header } from 'semantic-ui-react'
 
 
 function CheckoutUserModal(props){
@@ -19,16 +19,20 @@ function CheckoutUserModal(props){
 						<small>owner: {copy.owner.username}</small><br/>
 					</Card.Content>
 					<Card.Content extra>
-						<Button color="olive">Edit Copy</Button>
-						<Button color="orange" onClick={() => props.deleteCopy(copy.id)}>Lost My Copy!</Button>
+						<Button color="olive">Trade</Button>
+						<Button color="orange">Borrow</Button>
 					</Card.Content>
 				</Card>
 			)
 		})
 		return(
 			<Modal open={props.open} closeIcon onClose={props.close}>
-				<h1>This is the {props.selectedUser.username} Modal</h1>
-				{copies}
+				<Header>This is {props.selectedUser.username}'s Librarium</Header>
+				<Segment >
+					<Grid columns={2} divided>
+						{copies}
+					</Grid>
+				</Segment>
 			</Modal>
 		)
 	} else {
