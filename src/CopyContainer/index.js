@@ -55,10 +55,6 @@ class CopyContainer extends Component {
 				}
 			});
 			const parsedResponse = await createdBookResponse.json();
-			console.log("This is parsedResponse");
-			console.log(parsedResponse);
-			console.log('This is book from modal form')
-			console.log(bookFromModalForm);
 			this.getCopies()
 			this.closeAddModal()
 		}

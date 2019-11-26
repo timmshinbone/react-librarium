@@ -93,7 +93,9 @@ class UserContainer extends Component {
 	render(props){
 		return(
 			<Segment >
-				<TradeContainer />
+				<TradeContainer 
+					loggedInUsername={this.props.loggedInUsername}
+				/>
 				<Grid columns={5} divided >
 					<Grid.Column width={1}/>
 					<Grid.Column width={9}>
