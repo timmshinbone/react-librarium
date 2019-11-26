@@ -39,8 +39,9 @@ class TradeContainer extends Component {
 			const url = await fetch(process.env.REACT_APP_API_URL + '/api/v1/trades/' + id, {
 				method: 'PUT',
 				credentials: 'include',
-				mode: 'cors',
-				body: JSON.stringify(tradeToAccept.status),
+				body: JSON.stringify({
+					status: tradeToAccept.status
+				}),
 				headers: {
 					'Content-Type': 'application/json'
 				}
