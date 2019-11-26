@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Image, Card, Modal, Segment, Grid, Header } from 'semantic-ui-react'
-
+import TradeCreateForm from '../TradeCreateForm'
 
 function CheckoutUserModal(props){
 	if(props.selectedUser.id > 0) {	
@@ -19,7 +19,7 @@ function CheckoutUserModal(props){
 						<small>owner: {copy.owner.username}</small><br/>
 					</Card.Content>
 					<Card.Content extra>
-						<Button color="olive">Trade</Button>
+						<Button color="olive" onClick={() => props.openTradeModal(copy.id)}>Trade</Button>
 						<Button color="orange" onClick={() => console.log("borrow clicked")}>Borrow</Button>
 					</Card.Content>
 				</Card>
@@ -32,6 +32,13 @@ function CheckoutUserModal(props){
 					<Grid columns={2} divided>
 						{copies}
 					</Grid>
+					<TradeCreateForm 
+						open={props.tradeModalState}
+						tradeCopy={props.tradeCopy}
+						loggedInUsername={props.loggedInUsername}
+						close={props.closeTradeModal}
+						copies={props.copies}
+					/>
 				</Segment>
 			</Modal>
 		)

@@ -17,6 +17,8 @@ class UserContainer extends Component {
 				username: ''
 			},
 			checkoutUserModalOpen: false,
+			tradeModalOpen: false,
+			tradeCopy: null
 		}
 	}
 	componentDidMount(){
@@ -75,6 +77,19 @@ class UserContainer extends Component {
 			checkoutUserModalOpen: false
 		})
 	}
+	openTradeModal = (copyId) => {
+		console.log("ATTEMPTED TO OPEN TRADE MODAL")
+		this.setState({
+			tradeModalOpen: true,
+			tradeCopy: copyId
+		})
+		console.log("THIS IS tradeModalOpen state", this.state.tradeModalOpen);
+	}
+	closeTradeModal = () => {
+		this.setState({
+			tradeModalOpen: false
+		})
+	}
 	render(props){
 		return(
 			<Segment >
@@ -104,8 +119,13 @@ class UserContainer extends Component {
 				<CheckoutUserModal 
 					open={this.state.checkoutUserModalOpen}
 					selectedUser={this.state.selectedUser}
+					loggedInUsername={this.props.loggedInUsername}
 					copies={this.state.copies}
+					tradeCopy={this.state.tradeCopy}
 					close={this.closeUserModal}
+					openTradeModal={this.openTradeModal}
+					tradeModalState={this.state.tradeModalOpen}
+					closeTradeModal={this.closeTradeModal}
 				/>
 			</Segment>
 		)

@@ -33,6 +33,12 @@ class TradeContainer extends Component {
 	render(){
 		console.log("\nThis is Trades in Trades container");
 		console.log(this.state.trades);
+		if(this.state.trades.length > 0){
+			const trade = this.state.trades[0]
+			console.log("this is trade.status");
+			console.log(trade.status);
+			
+		}
 		return(
 			<small>trades container</small>
 		)
