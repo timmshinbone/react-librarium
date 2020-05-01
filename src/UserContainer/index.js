@@ -4,6 +4,7 @@ import CopyContainer from '../CopyContainer'
 import UserList from '../UserList'
 import CheckoutUserModal from '../CheckoutUserModal'
 import TradeContainer from '../TradeContainer'
+import WorldContainer from '../WorldContainer'
 
 class UserContainer extends Component {
 	constructor(props){
@@ -93,6 +94,7 @@ class UserContainer extends Component {
 	render(props){
 		return(
 			<Segment >
+				<WorldContainer />
 				<TradeContainer 
 					loggedInUsername={this.props.loggedInUsername}
 				/>
