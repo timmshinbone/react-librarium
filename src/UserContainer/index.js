@@ -94,13 +94,13 @@ class UserContainer extends Component {
 	render(props){
 		return(
 			<Segment >
-				<WorldContainer />
 				<TradeContainer 
 					loggedInUsername={this.props.loggedInUsername}
 				/>
 				<Grid columns={5} divided >
 					<Grid.Column width={1}/>
 					<Grid.Column width={9}>
+						<WorldContainer />
 						<CopyContainer 					
 							loggedin={this.props.loggedin}
 							loggedInUsername={this.props.loggedInUsername}

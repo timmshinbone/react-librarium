@@ -7,7 +7,7 @@ class WorldContainer extends Component {
 
 		this.state = {
 			fiveWorldBooks: [],
-			openLibPref: 'http://openlibrary.org/api/books?bibkeys=ISBN:',
+			openLibPref: 'http://openlibrary.org/api/books?bibkeys=',
 			openLibSuff: '&jscmd=data&format=json'
 		}
 	}
@@ -18,9 +18,9 @@ class WorldContainer extends Component {
 		
 		
 		try {
-			const wBooks = await fetch(this.state.openLibPref + '9780345538987' + this.state.openLibSuff)
+			const wBooks = await fetch(this.state.openLibPref + 'ISBN:9780345538987' + this.state.openLibSuff)
 			const parsedWBooks = await wBooks.json();
-			console.log('this is wBooks\n\n', parsedWBooks);
+			console.log('this is parsedWBooks\n\n', parsedWBooks);
 		}
 		catch (err) {
 			console.log(err)
@@ -28,7 +28,9 @@ class WorldContainer extends Component {
 	}
 	render(){
 		return(
-			<p>WorldContainer</p>
+			<Segment>
+				<Button color="blue" onClick={() => this.getWorldBooks()}>Search The World!</Button>
+			</Segment>
 		)
 
 	}
