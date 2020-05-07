@@ -1,5 +1,5 @@
 import React, { Component }from 'react';
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment, Button, Form } from 'semantic-ui-react'
 
 class WorldContainer extends Component {
 	constructor(props){
@@ -11,11 +11,15 @@ class WorldContainer extends Component {
 			openLibSuff: '&jscmd=data&format=json'
 		}
 	}
-	componentDidMount(){
-		this.getWorldBooks();
-	}
-	getWorldBooks = async () => {
+	// componentDidMount(){
+	// 	this.getWorldBooks();
+	// }
+	handleChange(e){
+		e.preventDefault();
 		
+	}
+	getWorldBooks = async (e, inputFromForm) => {
+		console.log('this is input from the form\n', inputFromForm);	
 		
 		try {
 			const wBooks = await fetch(this.state.openLibPref + 'ISBN:9780345538987' + this.state.openLibSuff)
@@ -29,7 +33,10 @@ class WorldContainer extends Component {
 	render(){
 		return(
 			<Segment>
-				<Button color="blue" onClick={() => this.getWorldBooks()}>Search The World!</Button>
+				<Form onSubmit={(e) => this.getWorldBooks(e)}>
+					<Form.Input type="text" name="isbn" onChange={this.handleChange}/>
+					<Button color="blue" type="Submit">Search The World!</Button>
+				</Form>
 			</Segment>
 		)
 
